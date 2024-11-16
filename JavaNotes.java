@@ -278,23 +278,34 @@ public class JavaProject {
             variable = "New Value";
         }
 
+
+
         //// Array
 
         int[] numbers = new int[3]; // explicitly define the size upon creating. This creates an Array to hold three integers
+        numbers[0] = 2;
+        numbers[1] = 1; 
+        numbers[2] = 5;
 
         // An array is declared by adding square brackets after the type of the elements it contains (typeofelements[])
         // A new Array is created by calling new followed by the type of the elements, square brackets and the number of the elements in the square brackets.
 
         String[] strings = new String[5]; // explicitly define the size upon creating. This creates an Array to hold five strings
+        strings[0] = Apple;
+        strings[1] = Pear;
+        strings[2] = Jeans;
+        strings[3] = Jerome;
+        strings[4] = Oxidizer;
 
+        System.out.println(numbers[0]); // 2
+        System.out.println(numbers[2]); // 5
 
-        numbers[0] = 2;
-        numbers[2] = 5;
+        System.out.println(numbers[3]); // Jerome
+        System.out.println(numbers[2]); // Jeans
 
-        System.out.println(numbers[0]);
-        System.out.println(numbers[2]);
-    
-
+        arrayname.length // Displays length
+        int arraylength = numbers.length // = 3
+        System.out.println("Length of the array: " + strings.length) // = 5
 
 
 
