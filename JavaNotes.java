@@ -307,21 +307,223 @@ public class JavaProject {
         int arraylength = numbers.length // = 3
         System.out.println("Length of the array: " + strings.length) // = 5
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+     //// Binary Search Implementation
+    
+     public static int binarySearch(int[] array, int target) {
+        int left = 0;
+        int right = array.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2; // Avoids potential overflow
+            if (array[mid] == target) {
+                return mid; // Target found at index mid
+            } else if (array[mid] < target) {
+                left = mid + 1; // Search right half
+            } else {
+                right = mid - 1; // Search left half
+            }
+        }
+        return -1; // Target not found
+    }
+
+    int[] nums = {1, 3, 5, 7, 9};
+    int index = binarySearch(nums, 5);
+    System.out.println("Index of target: " + index); // 2
+
+    //// Bubble Sort
+
+    public static void bubbleSort(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    // Swap elements
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    int[] values = {5, 2, 9, 1, 5, 6};
+    bubbleSort(values);
+    System.out.println(Arrays.toString(values)); // [1, 2, 5, 5, 6, 9]
+    
+    //// LinkedList Traversal
+    
+    LinkedList<String> names = new LinkedList<>();
+    names.add("Alice");
+    names.add("Bob");
+    names.add("Charlie");
+
+    for (String name : names) {
+        System.out.println(name);
+    }
+    // Output:
+    // Alice
+    // Bob
+    // Charlie
+
+    //// Recursive Factorial
+    public static int factorial(int n) {
+        if (n == 0) {
+            return 1; // Base case
+        }
+        return n * factorial(n - 1); // Recursive step
+    }
+
+    System.out.println(factorial(5)); // 120
+
+    //// Interface and Class Implementation
+    
+    interface Animal {
+        void speak();
+    }
+
+    class Dog implements Animal {
+        public void speak() {
+            System.out.println("Woof!");
+        }
+    }
+
+    class Cat implements Animal {
+        public void speak() {
+            System.out.println("Meow!");
+        }
+    }
+
+    Animal dog = new Dog();
+    Animal cat = new Cat();
+    dog.speak(); // Woof!
+    cat.speak(); // Meow!
+
+    //// Sorting with Comparator
+    class Person {
+        String name;
+        int age;
+
+        Person(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        @Override
+        public String toString() {
+            return name + " (" + age + ")";
+        }
+    }
+
+    class AgeComparator implements Comparator<Person> {
+        public int compare(Person p1, Person p2) {
+            return Integer.compare(p1.age, p2.age);
+        }
+    }
+
+    ArrayList<Person> people = new ArrayList<>();
+    people.add(new Person("Alice", 30));
+    people.add(new Person("Bob", 25));
+    people.add(new Person("Charlie", 35));
+
+    Collections.sort(people, new AgeComparator());
+    System.out.println(people);
+    // Output: [Bob (25), Alice (30), Charlie (35)]
+
+    //// Measuring Big-O Efficiency
+
+    /*
+    * Big-O notation measures the time or space complexity of an algorithm.
+    * It describes how the performance scales with input size (n).
+    */
+
+    // Common Big-O Notations:
+    // O(1): Constant time, does not depend on input size.
+    // Example: Accessing an element by index in an array.
+    int firstElement = array[0]; // O(1)
+
+    // O(log n): Logarithmic time, input size reduces by half at each step.
+    // Example: Binary Search.
+    // Refer to binarySearch example above. 
+
+    // O(n): Linear time, scales directly with input size.
+    // Example: Summing all elements in an array.
+    int sum = 0;
+    for (int i = 0; i < array.length; i++) {
+        sum += array[i]; // O(n)
+    }
+
+    // O(n log n): Log-linear time, typical for efficient sorting algorithms.
+    // Example: Merge Sort.
+    // In Merge Sort, the array is repeatedly divided in half until each subarray has one element (this is the
+    // log n part). Then, those subarrays are merged back together while comparing and arranging the
+    // elements (this is the n part, as we process every element in the array). The result is a time complexity
+    // of O(n log n).
+
+    // O(n^2): Quadratic time, nested loops on input size.
+    // Example: Bubble Sort.
+    for (int i = 0; i < array.length; i++) {
+        for (int j = i + 1; j < array.length; j++) {
+            if (array[i] > array[j]) {
+                // Swap
+            }
+        }
+    }
+
+    // O(2^n): Exponential time, doubles with each input addition.
+    // Example: Recursive Fibonacci.
+    public static int fib(int n) {
+        if (n <= 1) return n;
+        return fib(n - 1) + fib(n - 2); // O(2^n)
+    }
+
+    /*
+        * To measure efficiency:
+        * - Count the loops or recursive calls.
+        * - Analyze how operations depend on input size (n).
+        */
+
+    //// On finding Code Purpose
+
+    /*
+    * To determine the purpose of a code segment:
+    * 1. Identify the input and output of the method or code.
+    * 2. Look for patterns, such as summing numbers, sorting arrays, or searching for elements.
+    * 3. Break the code into small, understandable sections:
+    *    - Check for loops (What do they iterate over? How many times?).
+    *    - Look for conditionals (What conditions are being checked?).
+    *    - Observe methods or library functions being called (What are they doing?).
+    */
+
+    // Example: Identify the purpose of this code
+    public static int mystery(int[] array) {
+        int max = Integer.MIN_VALUE; // Initialize with the smallest possible value.
+        for (int num : array) {
+            if (num > max) {
+                max = num; // Update max if a larger value is found.
+            }
+        }
+        return max; // Return the largest value in the array.
+    }
+
+    /*
+    * Purpose: This code finds and returns the largest value in an array.
+    * Steps:
+    * - Initialize max to the smallest possible value.
+    * - Iterate through the array, comparing each value to max.
+    * - Update max if the current value is larger.
+    */
+
+    /*
+    * Write a quick summary for each code block to determine its role.
+    * For example:
+    * - Initialization? (Setting variables, allocating memory)
+    * - Processing? (Loops, conditionals, or calculations)
+    * - Output? (Printing, returning values)
+    */
+
+
+
 }
 
 
